@@ -1,0 +1,40 @@
+name: newsletter Test Mail
+
+# on: [push]
+on:
+  schedule:
+    - cron: "0 * * * *"
+env:
+  MAIL_KEY: ${{ secrets.MAIL_KEY}}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Send Mail
+        run: |
+          npm install
+          node mail-API/orders/newsletterMailer.js
+
+      - name: Setup Git Config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
+      - name: commit
+        run: |
+          git add newsletterCount.txt
+          git commit -m "newsletter count updated"
+          git push origin master
