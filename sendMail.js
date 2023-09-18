@@ -32,6 +32,8 @@ const sendMail = async (error) => {
 
     html: root.toString(),
   };
+  console.log(transporter);
+  console.log(mailOptions);
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);
