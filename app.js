@@ -7,7 +7,7 @@ console.log(
   process.env.MAIL_ADDRES,
   process.env.MAIL_ADDRESS
 );
-
+console.log("selam");
 serviceList.forEach((serviceUrl) => {
   checkServiceStatus(serviceUrl);
 });
