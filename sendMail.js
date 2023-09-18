@@ -21,9 +21,7 @@ const sendMail = async (error) => {
 
   var root = HTMLParser.parse(template);
   const informationDiv = root.getElementById("information");
-  informationDiv.innerText = error;
-
-  console.log(root);
+  informationDiv.innerHTML = error;
 
   var mailOptions = {
     from: process.env.MAIL_ADDRESS,
