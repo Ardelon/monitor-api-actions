@@ -6,7 +6,7 @@ const { readFile } = require("./fileProcesses");
 
 const sendMail = async (error) => {
   let template = await readFile(path.resolve(__dirname, "./template.html"));
-
+  console.log(error);
   var transporter = nodemailer.createTransport({
     service: "gmail",
     secure: false,
@@ -22,6 +22,8 @@ const sendMail = async (error) => {
   var root = HTMLParser.parse(template);
   const informationDiv = root.getElementById("information");
   informationDiv.innerText = error;
+
+  console.log(root);
 
   var mailOptions = {
     from: process.env.MAIL_ADDRESS,
