@@ -1,9 +1,8 @@
 name: monitor api
 
-on: [push]
-# on:
-#   schedule:
-#     - cron: "0 * * * *"
+on:
+  schedule:
+    - cron: "0 * * * *"
 env:
   MAIL_KEY: ${{ secrets.MAIL_KEY}}
   MAIL_ADDRESS: ${{ secrets.MAIL_ADDRESS}}
