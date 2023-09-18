@@ -5,7 +5,6 @@ const path = require("path");
 const { readFile } = require("./fileProcesses");
 
 const sendMail = async (error) => {
-  console.log(path.resolve(__dirname, "template.html"));
   let template = await readFile(path.resolve(__dirname, "./template.html"));
 
   var transporter = nodemailer.createTransport({
@@ -19,7 +18,6 @@ const sendMail = async (error) => {
       rejectUnauthorized: false,
     },
   });
-  console.log(template);
 
   var root = HTMLParser.parse(template);
   const informationDiv = root.getElementById("information");
@@ -32,8 +30,7 @@ const sendMail = async (error) => {
 
     html: root.toString(),
   };
-  console.log(transporter);
-  console.log(mailOptions);
+
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);
