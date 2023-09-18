@@ -1,6 +1,5 @@
 const axios = require("axios");
 const { sendMail } = require("./sendMail");
-require("dotenv").config();
 
 async function checkServiceStatus(url) {
   try {

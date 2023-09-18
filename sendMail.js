@@ -3,7 +3,6 @@ var HTMLParser = require("node-html-parser");
 
 const path = require("path");
 const { readFile } = require("./fileProcesses");
-require("dotenv").config();
 
 const sendMail = async (error) => {
   console.log(path.resolve(__dirname, "template.html"));
