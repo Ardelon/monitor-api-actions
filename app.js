@@ -1,7 +1,8 @@
 const { checkServiceStatus } = require("./checkServices");
-require("dotenv").config();
 
-const serviceList = JSON.parse(process.env.SERVICE_LIST);
+const serviceListString = process.env.SERVICE_LIST;
+const serviceList = serviceListString.split(",");
+
 serviceList.forEach((serviceUrl) => {
   checkServiceStatus(serviceUrl);
 });

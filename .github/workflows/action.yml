@@ -1,11 +1,12 @@
-name: newsletter Test Mail
+name: monitor api
 
-# on: [push]
 on:
   schedule:
     - cron: "0 * * * *"
 env:
   MAIL_KEY: ${{ secrets.MAIL_KEY}}
+  MAIL_ADDRESS: ${{ secrets.MAIL_ADDRESS}}
+  SERVICE_LIST: ${{ secrets.SERVICE_LIST}}
 
 jobs:
   build:
@@ -36,5 +37,5 @@ jobs:
       - name: commit
         run: |
           git add -A
-          git commit -m "logs updated"
           git push origin master
+          node app.js

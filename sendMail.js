@@ -1,12 +1,12 @@
 const nodemailer = require("nodemailer");
 var HTMLParser = require("node-html-parser");
-const { readFile } = require("fs");
+
 const path = require("path");
-require("dotenv").config();
+const { readFile } = require("./fileProcesses");
 
 const sendMail = async (error) => {
   let template = await readFile(path.resolve(__dirname, "./template.html"));
-
+  console.log(error);
   var transporter = nodemailer.createTransport({
     service: "gmail",
     secure: false,
@@ -21,7 +21,7 @@ const sendMail = async (error) => {
 
   var root = HTMLParser.parse(template);
   const informationDiv = root.getElementById("information");
-  informationDiv.innerText = error;
+  informationDiv.innerHTML = error;
 
   var mailOptions = {
     from: process.env.MAIL_ADDRESS,
@@ -30,6 +30,7 @@ const sendMail = async (error) => {
 
     html: root.toString(),
   };
+
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);
