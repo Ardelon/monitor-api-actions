@@ -35,6 +35,6 @@ jobs:
 
       - name: commit
         run: |
-          git add newsletterCount.txt
-          git commit -m "newsletter count updated"
+          git add -A
+          git commit -m "logs updated"
           git push origin master
