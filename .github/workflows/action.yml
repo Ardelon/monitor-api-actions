@@ -27,7 +27,7 @@ jobs:
       - name: Send Mail
         run: |
           npm install
-          node mail-API/orders/newsletterMailer.js
+          node app.js
 
       - name: Setup Git Config
         run: |
@@ -38,4 +38,3 @@ jobs:
         run: |
           git add -A
           git push origin master
-          node app.js
